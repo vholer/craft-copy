@@ -108,7 +108,7 @@ class CodeUpAction extends StageAwareBaseAction
         try {
             $this->section("git push ({$msg})");
             $git->getWorkingCopy()->getWrapper()->streamOutput();
-            $git->push($upstream, $branch, '-u master');
+            $git->push($upstream, $branch, '-u master', ['u' => 'master']);
         } catch (GitException $gitException) {
             $lines = count(explode(PHP_EOL, $gitException->getMessage()));
             $this->output->write(str_repeat("\x1B[1A\x1B[2K", $lines));
